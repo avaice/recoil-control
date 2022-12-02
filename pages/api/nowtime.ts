@@ -2,12 +2,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  name: string
+  now: string
 }
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  setTimeout(
+    () => res.status(200).json({ now: new Date().toISOString() }),
+    1000
+  )
 }
