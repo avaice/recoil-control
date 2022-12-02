@@ -6,9 +6,7 @@ import { ApiLoaded, ApiNotLoaded } from './types'
 export const dateGetApiState = selector({
   key: RecoilKeys.DateGetApi,
   get: async () => {
-    const result = await (
-      await fetch('http://localhost:3000/api/nowtime')
-    ).json()
+    const result = await (await fetch('/api/nowtime')).json()
     return result.now
   },
 })
@@ -23,9 +21,7 @@ export const arrayGetApiState = selector<NumArrayApiType>({
   key: RecoilKeys.ArrayGetApi,
   get: async ({ get }) => {
     const result = await (
-      await fetch(
-        `http://localhost:3000/api/counter?count=${get(arrayLenState)}`
-      )
+      await fetch(`/api/counter?count=${get(arrayLenState)}`)
     ).json()
     return result
   },
